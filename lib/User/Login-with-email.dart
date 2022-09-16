@@ -1,4 +1,7 @@
+import 'package:app/Colors.dart';
+import 'package:app/Designs/TextField-designs.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginWithEmail extends StatefulWidget {
   const LoginWithEmail({super.key});
@@ -13,20 +16,22 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
     return Container(
       child: Column(
         children: [
-          TextField(
-            decoration: InputDecoration(
-              hintText: "Enter Your Email",
-              border: OutlineInputBorder(),
-            ),
+          TextFieldDesigns(
+            TextfieldIcon: FontAwesomeIcons.envelopesBulk,
+            TextfieldIconColor: Maincolor,
+            HintText: "Enter your email",
+            borderRadius: BorderRadius.circular(20),
+            fillColorTextfield: Colors.amber,
           ),
           SizedBox(
             height: 10,
           ),
-          TextField(
-            decoration: InputDecoration(
-              hintText: "Enter your password",
-              border: OutlineInputBorder(),
-            ),
+          TextFieldDesigns(
+            TextfieldIcon: FontAwesomeIcons.lock,
+            TextfieldIconColor: Maincolor,
+            HintText: "Enter your password",
+            borderRadius: BorderRadius.circular(20),
+            fillColorTextfield: Colors.amber,
           ),
         ],
       ),

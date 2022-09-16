@@ -1,5 +1,6 @@
 import 'package:app/Colors.dart';
 import 'package:app/Designs/Button-designs.dart';
+import 'package:app/Designs/TextField-designs.dart';
 import 'package:app/Padding-settings.dart';
 import 'package:app/User/Bottom-app-bar-buttons.dart';
 import 'package:app/User/Login-page.dart';
@@ -51,33 +52,22 @@ class _SignInScreenState extends State<SignInScreen> {
                       child: Column(
                         children: [
                           //username area
-                          TextField(
-                            decoration: InputDecoration(
-                              icon: FaIcon(
-                                FontAwesomeIcons.user,
-                                color: Maincolor,
-                              ),
-                              hintText: "Enter your username",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                            ),
-                          ),
+                          TextFieldDesigns(
+                              TextfieldIcon: FontAwesomeIcons.user,
+                              TextfieldIconColor: Maincolor,
+                              HintText: "Enter your username",
+                              borderRadius: BorderRadius.circular(20),
+                              fillColorTextfield: Colors.amber,),
                           SizedBox(
                             height: 10,
                           ),
                           //Email area
-                          TextField(
-                            decoration: InputDecoration(
-                              icon: FaIcon(
-                                FontAwesomeIcons.envelope,
-                                color: Maincolor,
-                              ),
-                              hintText: "Enter your Email",
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                            ),
+                          TextFieldDesigns(
+                            TextfieldIcon: FontAwesomeIcons.envelope,
+                            TextfieldIconColor: Maincolor,
+                            HintText: "Enter your email",
+                            borderRadius: BorderRadius.circular(20),
+                            fillColorTextfield: Colors.amber,
                           ),
                         ],
                       ),

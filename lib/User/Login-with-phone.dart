@@ -1,4 +1,7 @@
+import 'package:app/Colors.dart';
+import 'package:app/Designs/TextField-designs.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginWithPhone extends StatefulWidget {
   const LoginWithPhone({super.key});
@@ -13,12 +16,12 @@ class _LoginWithPhoneState extends State<LoginWithPhone> {
     return Column(
       children: [
         Container(
-          child: TextField(
-            decoration: InputDecoration(
-              hintText: "Enter your phone number",
-              fillColor: Colors.white54,
-              border: OutlineInputBorder(),
-            ),
+          child: TextFieldDesigns(
+            TextfieldIcon: FontAwesomeIcons.phone,
+            TextfieldIconColor: Maincolor,
+            HintText: "Enter your phone number",
+            borderRadius: BorderRadius.circular(20),
+            fillColorTextfield: Colors.amber,
           ),
         ),
       ],
