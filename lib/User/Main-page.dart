@@ -2,6 +2,7 @@
 
 import 'package:app/Colors.dart';
 import 'package:app/User/Login-page.dart';
+import 'package:app/User/Sign-in-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -55,22 +56,32 @@ class _MainPageState extends State<MainPage> {
                 horizontal: 20,
                 vertical: 20,
               ),
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 60,
-                child: Center(
-                  child: Text(
-                    "Create an Account",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 55, 55, 55),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => SignInScreen(),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: 60,
+                  child: Center(
+                    child: Text(
+                      "Create an Account",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 55, 55, 55),
+                      ),
                     ),
                   ),
-                ),
-                decoration: BoxDecoration(
-                  color: Colors.purpleAccent[100],
-                  borderRadius: BorderRadius.circular(20),
+                  decoration: BoxDecoration(
+                    color: Colors.purpleAccent[100],
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                 ),
               ),
             ),

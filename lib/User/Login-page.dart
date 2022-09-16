@@ -1,9 +1,11 @@
 import 'dart:ui';
 
 import 'package:app/Colors.dart';
+import 'package:app/Designs/Button-designs.dart';
 import 'package:app/User/Bottom-app-bar-buttons.dart';
 import 'package:app/User/Login-with-email.dart';
 import 'package:app/User/Login-with-phone.dart';
+import 'package:app/User/Sign-in-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -111,12 +113,22 @@ class _LoginPageState extends State<LoginPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text(
-                      "Sign in",
-                      style: GoogleFonts.roboto(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 108, 162, 255),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) => SignInScreen(),
+                          ),
+                        );
+                      },
+                      child: Text(
+                        "Sign in",
+                        style: GoogleFonts.roboto(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 108, 162, 255),
+                        ),
                       ),
                     ),
                   ],
@@ -124,26 +136,15 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Spacer(),
               //login button
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: Container(
-                  child: Center(
-                    child: Text(
-                      "Log in",
-                      style: GoogleFonts.robotoSlab(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                  width: MediaQuery.of(context).size.width,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    color: Maincolor,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                ),
-              ),
+              ButtonDesigns(
+                buttonText: "Log in",
+                VerticalPadding: 20,
+                HorizontalPadding: 0,
+                ButtonColor: Maincolor,
+                borderRadius: BorderRadius.circular(20),
+                fontsSize: 20,
+                height: 50,
+              )
             ],
           ),
         ),

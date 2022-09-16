@@ -1,4 +1,6 @@
+import 'package:app/Colors.dart';
 import 'package:app/User/Main-page.dart';
+import 'package:app/User/Sign-in-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -15,6 +17,9 @@ class MyApp extends StatelessWidget {
       SystemUiOverlayStyle(statusBarColor: Colors.transparent),
     );
     return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.purple,
+      ),
       debugShowCheckedModeBanner: false,
       home: MainPage(),
     );
