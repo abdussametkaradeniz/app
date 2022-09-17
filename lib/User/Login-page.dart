@@ -9,6 +9,7 @@ import 'package:app/User/Sign-in-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
@@ -137,6 +138,9 @@ class _LoginPageState extends State<LoginPage> {
               Spacer(),
               //login button
               ButtonDesigns(
+                TapButton: (){
+                  
+                },
                 buttonText: "Log in",
                 VerticalPadding: 20,
                 HorizontalPadding: 0,

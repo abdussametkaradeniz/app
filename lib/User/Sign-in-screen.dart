@@ -4,6 +4,7 @@ import 'package:app/Designs/TextField-designs.dart';
 import 'package:app/Padding-settings.dart';
 import 'package:app/User/Bottom-app-bar-buttons.dart';
 import 'package:app/User/Login-page.dart';
+import 'package:app/User/Sign-in-screen2.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -53,17 +54,18 @@ class _SignInScreenState extends State<SignInScreen> {
                         children: [
                           //username area
                           TextFieldDesigns(
-                              TextfieldIcon: FontAwesomeIcons.user,
-                              TextfieldIconColor: Maincolor,
-                              HintText: "Enter your username",
-                              borderRadius: BorderRadius.circular(20),
-                              fillColorTextfield: Colors.amber,),
+                            prefixIconImage: Image.asset("images/user2.png"),
+                            TextfieldIconColor: Maincolor,
+                            HintText: "Enter your username",
+                            borderRadius: BorderRadius.circular(20),
+                            fillColorTextfield: Colors.amber,
+                          ),
                           SizedBox(
                             height: 10,
                           ),
                           //Email area
                           TextFieldDesigns(
-                            TextfieldIcon: FontAwesomeIcons.envelope,
+                            prefixIconImage: Image.asset("images/email2.png"),
                             TextfieldIconColor: Maincolor,
                             HintText: "Enter your email",
                             borderRadius: BorderRadius.circular(20),
@@ -105,6 +107,15 @@ class _SignInScreenState extends State<SignInScreen> {
 
                   //sign in button
                   ButtonDesigns(
+                      TapButton: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: ((BuildContext context) =>
+                                SignInScreen2()),
+                          ),
+                        );
+                      },
                       buttonText: "Sign in",
                       VerticalPadding: 20,
                       HorizontalPadding: 20,

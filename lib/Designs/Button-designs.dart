@@ -9,6 +9,7 @@ class ButtonDesigns extends StatelessWidget {
   final BorderRadius borderRadius;
   final double fontsSize;
   final double height;
+  final Function TapButton;
 
   const ButtonDesigns({
     required this.buttonText,
@@ -18,6 +19,7 @@ class ButtonDesigns extends StatelessWidget {
     required this.borderRadius,
     required this.fontsSize,
     required this.height,
+    required this.TapButton,
   });
   @override
   Widget build(BuildContext context) {
@@ -26,19 +28,24 @@ class ButtonDesigns extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(
             vertical: VerticalPadding, horizontal: HorizontalPadding),
-        child: Container(
-          width: screenWidth,
-          height: height,
-          decoration: BoxDecoration(
-            color: ButtonColor,
-            borderRadius: borderRadius,
-          ),
-          child: Center(
-            child: Text(
-              buttonText,
-              style: GoogleFonts.robotoFlex(
-                fontSize: fontsSize,
-                fontWeight: FontWeight.bold,
+        child: GestureDetector(
+          onTap: () {
+            TapButton();
+          },
+          child: Container(
+            width: screenWidth,
+            height: height,
+            decoration: BoxDecoration(
+              color: ButtonColor,
+              borderRadius: borderRadius,
+            ),
+            child: Center(
+              child: Text(
+                buttonText,
+                style: GoogleFonts.robotoFlex(
+                  fontSize: fontsSize,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),

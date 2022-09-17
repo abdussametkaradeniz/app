@@ -17,7 +17,7 @@ class _LoginWithPhoneState extends State<LoginWithPhone> {
       children: [
         Container(
           child: TextFieldDesigns(
-            TextfieldIcon: FontAwesomeIcons.phone,
+            prefixIconImage: Image.asset("images/call.png"),
             TextfieldIconColor: Maincolor,
             HintText: "Enter your phone number",
             borderRadius: BorderRadius.circular(20),

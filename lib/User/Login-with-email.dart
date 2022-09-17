@@ -17,7 +17,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
       child: Column(
         children: [
           TextFieldDesigns(
-            TextfieldIcon: FontAwesomeIcons.envelopesBulk,
+            prefixIconImage: Image.asset("images/email.png"),
             TextfieldIconColor: Maincolor,
             HintText: "Enter your email",
             borderRadius: BorderRadius.circular(20),
@@ -27,7 +27,7 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
             height: 10,
           ),
           TextFieldDesigns(
-            TextfieldIcon: FontAwesomeIcons.lock,
+            prefixIconImage: Image.asset("images/key.png"),
             TextfieldIconColor: Maincolor,
             HintText: "Enter your password",
             borderRadius: BorderRadius.circular(20),
