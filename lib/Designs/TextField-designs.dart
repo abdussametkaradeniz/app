@@ -9,6 +9,7 @@ class TextFieldDesigns extends StatelessWidget {
   final String HintText;
   final BorderRadius borderRadius;
   final Color fillColorTextfield;
+  final TextEditingController ControllerT;
   const TextFieldDesigns({
     super.key,
     //required this.TextfieldIcon,
@@ -17,11 +18,13 @@ class TextFieldDesigns extends StatelessWidget {
     required this.borderRadius,
     required this.fillColorTextfield,
     required this.prefixIconImage,
+    required this.ControllerT,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: ControllerT,
       decoration: InputDecoration(
           /* icon: FaIcon(
           TextfieldIcon,

@@ -24,6 +24,11 @@ class _SignInScreenState extends State<SignInScreen> {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
 
+    //controllers
+    final _signInEmailController = TextEditingController();
+    final _signInUsernameController = TextEditingController();
+
+
     return Scaffold(
       backgroundColor: BackgroundColorMain,
       bottomNavigationBar: BottomAppBarButtons(),
@@ -53,7 +58,9 @@ class _SignInScreenState extends State<SignInScreen> {
                       child: Column(
                         children: [
                           //username area
+                          
                           TextFieldDesigns(
+                            ControllerT: _signInUsernameController,
                             prefixIconImage: Image.asset("images/user2.png"),
                             TextfieldIconColor: Maincolor,
                             HintText: "Enter your username",
@@ -65,6 +72,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           ),
                           //Email area
                           TextFieldDesigns(
+                            ControllerT: _signInEmailController,
                             prefixIconImage: Image.asset("images/email2.png"),
                             TextfieldIconColor: Maincolor,
                             HintText: "Enter your email",

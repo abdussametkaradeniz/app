@@ -7,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+class FirstScreen extends StatefulWidget {
+  const FirstScreen({super.key});
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<FirstScreen> createState() => _FirstScreen();
 }
 
-class _MainPageState extends State<MainPage> {
+class _FirstScreen extends State<FirstScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

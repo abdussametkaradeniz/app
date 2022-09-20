@@ -2,7 +2,7 @@ import 'package:app/Colors.dart';
 import 'package:app/Designs/Button-designs.dart';
 import 'package:app/Designs/TextField-designs.dart';
 import 'package:app/Mainpage/App-main-page.dart';
-import 'package:app/User/Main-page.dart';
+import 'package:app/User/First-screen.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
@@ -15,6 +15,10 @@ class SignInScreen2 extends StatefulWidget {
 }
 
 class _SignInScreen2State extends State<SignInScreen2> {
+  final _SignIn2NameController = TextEditingController();
+  final _SignIn2SurnameController = TextEditingController();
+  final _SignIn2PasswordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +47,7 @@ class _SignInScreen2State extends State<SignInScreen2> {
                   ),
                   //name
                   TextFieldDesigns(
+                    ControllerT: _SignIn2NameController,
                     prefixIconImage: Image.asset("images/id.png"),
                     TextfieldIconColor: Maincolor,
                     HintText: "Enter your name",
@@ -54,6 +59,7 @@ class _SignInScreen2State extends State<SignInScreen2> {
                   ),
                   //surname
                   TextFieldDesigns(
+                    ControllerT: _SignIn2SurnameController,
                     prefixIconImage: Image.asset("images/id-card.png"),
                     TextfieldIconColor: Maincolor,
                     HintText: "Enter your surname",
@@ -65,6 +71,7 @@ class _SignInScreen2State extends State<SignInScreen2> {
                   ),
                   //password
                   TextFieldDesigns(
+                    ControllerT: _SignIn2PasswordController,
                     prefixIconImage: Image.asset("images/key.png"),
                     TextfieldIconColor: Maincolor,
                     HintText: "Enter your password",

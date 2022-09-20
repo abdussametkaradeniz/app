@@ -2,10 +2,13 @@ import 'dart:ui';
 
 import 'package:app/Colors.dart';
 import 'package:app/Designs/Button-designs.dart';
+import 'package:app/Global-state.dart';
+import 'package:app/Mainpage/App-main-page.dart';
 import 'package:app/User/Bottom-app-bar-buttons.dart';
 import 'package:app/User/Login-with-email.dart';
 import 'package:app/User/Login-with-phone.dart';
 import 'package:app/User/Sign-in-screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -13,16 +16,47 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
+  LoginWithEmail loginwithemail = LoginWithEmail();
+  late String EmailText;
+  late String PasswordText;
+
+  Future signIn(String EmailText, String PasswordText) async {
+    print(EmailText);
+    print(PasswordText);
+    /* await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: EmailText,
+      password: PasswordText,
+    ); */
+    try {
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: EmailText,
+        password: PasswordText,
+      );
+      /*  Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: ((BuildContext context) => AppMainPage()))); */
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        print('Wrong password provided for that user.');
+      }
+    }
+  }
+
   int currentTab = 0;
   @override
   Widget build(BuildContext context) {
+    final GlobalState store = GlobalState.instance;
     return Scaffold(
       bottomNavigationBar: BottomAppBarButtons(),
       backgroundColor: BackgroundColorMain,
@@ -138,8 +172,16 @@ class _LoginPageState extends State<LoginPage> {
               Spacer(),
               //login button
               ButtonDesigns(
-                TapButton: (){
-                  
+                TapButton: () {
+                  setState(() {
+                    EmailText = store.get("EmailTextValue");
+                    PasswordText = store.get("PasswordTextValue");
+                    if (EmailText == "" || PasswordText == "") {
+                      print("veriler gelmedi");
+                    } else {
+                      signIn(EmailText, PasswordText);
+                    }
+                  });
                 },
                 buttonText: "Log in",
                 VerticalPadding: 20,

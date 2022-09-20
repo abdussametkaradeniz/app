@@ -13,10 +13,14 @@ class LoginWithPhone extends StatefulWidget {
 class _LoginWithPhoneState extends State<LoginWithPhone> {
   @override
   Widget build(BuildContext context) {
+
+  final _phoneController = TextEditingController();
+
     return Column(
       children: [
         Container(
           child: TextFieldDesigns(
+            ControllerT: _phoneController,
             prefixIconImage: Image.asset("images/call.png"),
             TextfieldIconColor: Maincolor,
             HintText: "Enter your phone number",
