@@ -1,10 +1,13 @@
+import 'package:app/Auth/AuthFirebase.dart';
 import 'package:app/Colors.dart';
 import 'package:app/Designs/Button-designs.dart';
 import 'package:app/Designs/TextField-designs.dart';
+import 'package:app/Global-state.dart';
 import 'package:app/Padding-settings.dart';
 import 'package:app/User/Bottom-app-bar-buttons.dart';
 import 'package:app/User/Login-page.dart';
 import 'package:app/User/Sign-in-screen2.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -19,16 +22,17 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  final GlobalState store = GlobalState.instance;
+  //controllers
+  final _signInEmailController = TextEditingController();
+  final _signInUsernameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width;
     var screenHeight = MediaQuery.of(context).size.height;
 
-    //controllers
-    final _signInEmailController = TextEditingController();
-    final _signInUsernameController = TextEditingController();
-
-
+    store.set("SignInEmailTextValue", _signInEmailController.text.trim());
+    store.set("SignInPasswordTextValue", _signInUsernameController.text.trim());
     return Scaffold(
       backgroundColor: BackgroundColorMain,
       bottomNavigationBar: BottomAppBarButtons(),
@@ -58,7 +62,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       child: Column(
                         children: [
                           //username area
-                          
+
                           TextFieldDesigns(
                             ControllerT: _signInUsernameController,
                             prefixIconImage: Image.asset("images/user2.png"),
@@ -116,13 +120,16 @@ class _SignInScreenState extends State<SignInScreen> {
                   //sign in button
                   ButtonDesigns(
                       TapButton: () {
-                        Navigator.push(
+                        /* Navigator.push(
                           context,
                           MaterialPageRoute(
                             builder: ((BuildContext context) =>
                                 SignInScreen2()),
                           ),
-                        );
+                        ); */
+                        Auth().createUserWithEmailAndPassword(
+                            email: _signInEmailController.text,
+                            password: _signInUsernameController.text);
                       },
                       buttonText: "Sign in",
                       VerticalPadding: 20,

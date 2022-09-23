@@ -1,14 +1,16 @@
 import 'dart:ui';
-
+import 'package:app/Auth/AuthFirebase.dart';
 import 'package:app/Colors.dart';
 import 'package:app/Designs/Button-designs.dart';
 import 'package:app/Global-state.dart';
 import 'package:app/Mainpage/App-main-page.dart';
 import 'package:app/User/Bottom-app-bar-buttons.dart';
+import 'package:app/User/First-screen.dart';
 import 'package:app/User/Login-with-email.dart';
 import 'package:app/User/Login-with-phone.dart';
 import 'package:app/User/Sign-in-screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_feather_icons/flutter_feather_icons.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -23,37 +25,36 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  LoginWithEmail loginwithemail = LoginWithEmail();
-  late String EmailText;
-  late String PasswordText;
+  String errorMessage = "";
+  bool isLogin = true;
+  final GlobalState store = GlobalState.instance;
+  int currentTab = 0;
 
-  Future signIn(String EmailText, String PasswordText) async {
-    print(EmailText);
-    print(PasswordText);
-    /* await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: EmailText,
-      password: PasswordText,
-    ); */
+  Future<void> signInWithEmailAndPassword() async {
     try {
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: EmailText,
-        password: PasswordText,
-      );
-      /*  Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: ((BuildContext context) => AppMainPage()))); */
+      await Auth()
+          .signInWithEmailAndPassword(
+            email: store.get("EmailTextValue"),
+            password: store.get("PasswordTextValue"),
+          )
+          .then(
+            (value) => FirebaseAuth.instance.currentUser == null
+                ? print("giriş yapılmadı")
+                : Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => AppMainPage(),
+                    ),
+                  ),
+          );
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        print('No user found for that email.');
-      } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
-      }
+      setState(() {
+        errorMessage = e.message.toString();
+        print(e.message.toString());
+      });
     }
   }
 
-  int currentTab = 0;
   @override
   Widget build(BuildContext context) {
     final GlobalState store = GlobalState.instance;
@@ -172,16 +173,8 @@ class _LoginPageState extends State<LoginPage> {
               Spacer(),
               //login button
               ButtonDesigns(
-                TapButton: () {
-                  setState(() {
-                    EmailText = store.get("EmailTextValue");
-                    PasswordText = store.get("PasswordTextValue");
-                    if (EmailText == "" || PasswordText == "") {
-                      print("veriler gelmedi");
-                    } else {
-                      signIn(EmailText, PasswordText);
-                    }
-                  });
+                TapButton: () async {
+                  signInWithEmailAndPassword();
                 },
                 buttonText: "Log in",
                 VerticalPadding: 20,
@@ -190,7 +183,7 @@ class _LoginPageState extends State<LoginPage> {
                 borderRadius: BorderRadius.circular(20),
                 fontsSize: 20,
                 height: 50,
-              )
+              ),
             ],
           ),
         ),

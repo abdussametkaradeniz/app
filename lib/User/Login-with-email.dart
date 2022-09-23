@@ -18,16 +18,17 @@ class _LoginWithEmailState extends State<LoginWithEmail> {
   final _passwordController = TextEditingController();
   final GlobalState store = GlobalState.instance;
 
-  @override
+ /*  @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
-  }
+    super.dispose();
+  } */
 
   @override
   Widget build(BuildContext context) {
-    store.set("EmailTextValue", _emailController.text.toString().trim());
-    store.set("PasswordTextValue", _passwordController.text.toString().trim());
+    store.set("EmailTextValue", _emailController.text.trim());
+    store.set("PasswordTextValue", _passwordController.text.trim());
 
     return Container(
       child: Column(

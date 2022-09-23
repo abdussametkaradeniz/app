@@ -1,5 +1,10 @@
+import 'package:app/Auth/AuthFirebase.dart';
 import 'package:app/Colors.dart';
+import 'package:app/Designs/Button-designs.dart';
+import 'package:app/Mainpage/MainPageTopBar/Main-page-topbar.dart';
+import 'package:app/User/Login-page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class AppMainPage extends StatefulWidget {
@@ -16,14 +21,11 @@ class _AppMainPageState extends State<AppMainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: BackgroundColorMain,
-      body: SafeArea(
-        child: Container(
-          width: 100,
-          height: 100,
-          decoration: BoxDecoration(
-            color: Colors.amber,
-          ),
-          child: Text("signed in as :" + user.email!),
+      body: Center(
+        child: Column(
+          children: [
+            MainPageTopBar(),
+          ],
         ),
       ),
     );
